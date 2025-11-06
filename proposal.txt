@@ -1,0 +1,8 @@
+Project Overview
+My program aims to simulate the data of a restaurant over the course of every month, demonstrating how a business can change over time.
+
+Implementation
+The std::map will be used with the restaurant's name as a key, and then inside, three std::lists representing the menu items, current employees, and purchases made.
+
+Simulation
+The simulation will cycle every month, for each time period, of which employees and menu items can change, and so can the total purchases made each month.
