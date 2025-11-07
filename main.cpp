@@ -5,8 +5,8 @@
 #include <map>
 
 using namespace std;
-//Display Function that will go through the restaurant's current data and display it neatly
 
+void display(map <string, vector<list<string>>>);
 
 int main() {
     map <string, vector<list<string>>> restaurants;
@@ -21,9 +21,11 @@ int main() {
 
     //Populating values
     string value;
-    int 
+    int current = 0;
     while (file >> value) {
-        restaurants["Italiano"][0].push_back();
+        if (value == "")
+            current++;
+        restaurants["Italiano"][current].push_back(value);
     };
 
     file.close();
@@ -47,4 +49,32 @@ int main() {
         
         //Display call
         
+}
+
+//Display Function that will go through the restaurant's current data and display it neatly
+void display(map <string, vector<list<string>>> restaurantData) {
+    int count = 0;
+    for (auto pair : restaurantData) {
+        cout << "Restaurant name: " << pair.first << endl;
+        
+        if (count == 0) {
+            cout << "Menu Items: ";
+            for (auto value : pair.second) {
+                cout << value << endl;
+            count++;
+        } else if (count == 1) {
+            cout << "Employees: ";
+            for (auto value : pair.second) {
+                cout << value << endl;
+            count++;
+        } else if (count == 2) {
+            int sum = 0;
+            for (auto value : pair.second) {
+                sum += stoi(value);
+            cout << "Total purchases: " << sum << endl;
+        }
+            
+        }
+    }
+    cout << endl;
 }
