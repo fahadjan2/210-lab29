@@ -3,12 +3,14 @@
 #include <list>
 #include <vector>
 #include <map>
+#include <iomanip>
 
 using namespace std;
 
 void display(map <string, vector<list<string>>>);
 
 int main() {
+    srand(time(0));
     map <string, vector<list<string>>> restaurants;
 
     //File open
@@ -29,12 +31,39 @@ int main() {
     };
 
     file.close();
-    //Read data from the file
-        //For every line in the file, populate the menu, employees, and purchases made. Note every blank line will move on to the next data point 
-    //File close
 
-    //For 25 loops
-        //Print the loop number as a month
+    for (int i = 0; i < 25; i++) {
+        cout << "Month " << i << endl;
+        int num = rand() % 100 + 1;
+        if (num <= 10) {
+            //4
+        } else if (num <= 30) {
+            //3
+        } else if (num <= 60) {
+            //2
+        } else {
+            //1
+        }
+        
+        num = rand() % 100 + 1;
+        if (num <= 20) {
+            //3
+        } else if (num <= 50) {
+            //2
+        } else {
+            //1
+        }
+
+        num = rand() % 3;
+        for (int i = 0; i < num; i++) {
+
+        }
+
+        num = rand() % 300 + 201;
+        for (int i = 0; i < num; i++) {
+
+        }
+    
         //Randomize a percentage of how many employees will leave, 1-100. 
         //40% that one will leave, 30% that 2 will leave, 20% that 3 will leave, 10% that 4 will leave
 
@@ -48,7 +77,7 @@ int main() {
         //The cost will then be randomly generated from 10-30 and added to the purchase list
         
         //Display call
-        
+    }
 }
 
 //Display Function that will go through the restaurant's current data and display it neatly
@@ -61,20 +90,23 @@ void display(map <string, vector<list<string>>> restaurantData) {
             cout << "Menu Items: ";
             for (auto value : pair.second) {
                 cout << value << endl;
+            }
             count++;
         } else if (count == 1) {
             cout << "Employees: ";
             for (auto value : pair.second) {
                 cout << value << endl;
+            }
             count++;
         } else if (count == 2) {
             int sum = 0;
             for (auto value : pair.second) {
                 sum += stoi(value);
+            }
             cout << "Total purchases: " << sum << endl;
         }
             
-        }
     }
+    
     cout << endl;
 }
