@@ -1,0 +1,26 @@
+Antipasto
+Arancini
+Bruschetta
+Caprese Salad
+Lasagna
+Pasta
+Spaghetti Bolognese
+Fettuccine Alfredo
+Pesto Pasta
+Ravioli
+Risotto
+Gnocchi
+Chicken Piccata
+Chicken Parmesan
+Bistecca
+Grilled Fish
+Insalata
+Vegetables
+Tiramisu
+Gelato
+Panna Cotta
+Espresso
+Cappuccino
+Vino
+Birra
+Prosecco
