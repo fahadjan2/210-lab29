@@ -1,12 +1,32 @@
-//Headers and standard library inclusions
+#include <iostream>
+#include <fstream>
+#include <list>
+#include <vector>
+#include <map>
 
+using namespace std;
 //Display Function that will go through the restaurant's current data and display it neatly
 
-//Main function
-    //Create restaurant map, with three lists
+
+int main() {
+    map <string, vector<list<string>>> restaurants;
 
     //File open
-    //Error if file doesn't open
+	ifstream file;
+	file.open("data.txt");
+	if (!file.is_open()) {
+	    cout << "Failed to open file" << endl;
+	    return 1;
+	}
+
+    //Populating values
+    string value;
+    int 
+    while (file >> value) {
+        restaurants["Italiano"][0].push_back();
+    };
+
+    file.close();
     //Read data from the file
         //For every line in the file, populate the menu, employees, and purchases made. Note every blank line will move on to the next data point 
     //File close
@@ -27,4 +47,4 @@
         
         //Display call
         
-//End of main function
+}
