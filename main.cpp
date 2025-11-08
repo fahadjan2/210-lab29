@@ -8,63 +8,62 @@
 using namespace std;
 
 void display(map <string, vector<list<string>>>);
-void filePopulate(string fileName, list<string>);
+void removeEmployees(list<string> &list);
+void addEmployees(list<string> &list, vector<string> names);
 
 int main() {
     srand(time(0));
     map <string, vector<list<string>>> restaurants;
 
-    
+    //File open
+	ifstream file;
+	file.open("data.txt");
+	if (!file.is_open()) {
+	    cout << "Failed to open file" << endl;
+	    return 1;
+	}
+    //Populating values
+    string value;
+    int current = 0;
+    while (file >> value) {
+        if (value == "///")
+            current++;
+        restaurants["Italiano"][current].push_back(value);
+    };
+    file.close();
+
+    //Extra file
+    vector<string> names;
+    vector<string> menuItems;
+    ifstream file2;
+	file2.open("extra.txt");
+	if (!file2.is_open()) {
+	    cout << "Failed to open file" << endl;
+	    return 1;
+	}
+    //Populating name and menu items values
+    current = 0;
+    while (file2 >> value) {
+        if (value == "///")
+            current++;
+        else if (current == 0) {
+            names.push_back(value);
+        } else {
+            menuItems.push_back(value);
+        }
+    };
+    file2.close();
 
     display(restaurants);
+
+    //25 month run
     for (int i = 0; i < 25; i++) {
         cout << "Month " << i << endl;
 
-        //Removing Employees
-        int num = rand() % 100 + 1;
-        int removalNum = 0;
-        if (num <= 10) {
-            removalNum = 4;
-        } else if (num <= 30) {
-            removalNum = 3;
-        } else if (num <= 60) {
-            removalNum = 2;
-        } else {
-            removalNum = 1;
-        }
-        for (int i = 0; i < removalNum; i++) { //Removes removalNum times
-            auto employees = restaurants["Italiano"][1];
+        removeEmployees(restaurants["Italiano"][1]);
+        addEmployees(restaurants["Italiano"][1], names);
 
-            int randomNum = rand() % employees.size();
-            int count = 0;
-            for (auto value : employees) {
-                cout << value << endl;
-                if (randomNum == count) {
-                    employees.erase(value);
-                    break;
-                }
-                count++;
-            }
-        }
-        
-        //Adding Employees
-        num = rand() % 100 + 1;
-        int addNum = 0;
-        if (num <= 20) {
-            addNum = 3;
-        } else if (num <= 50) {
-            addNum = 2;
-        } else {
-            addNum = 1;
-        }
-
-        for (int i = 0; i < addNum; i++) { //Adds addNum times
-            auto employees = restaurants["Italiano"][1];
-            employees.push_back();
-        }
-        
-
-        num = rand() % 3;
+        int num = rand() % 3;
         for (int i = 0; i < num; i++) {
 
         }
@@ -119,6 +118,47 @@ void display(map <string, vector<list<string>>> restaurantData) {
     cout << endl;
 }
 
-void filePopulate() {
-    
+void removeEmployees(list<string> &employees) {
+    //Removing Employees
+    int num = rand() % 100 + 1;
+    int removalNum = 0;
+    if (num <= 10) {
+        removalNum = 4;
+    } else if (num <= 30) {
+        removalNum = 3;
+    } else if (num <= 60) {
+        removalNum = 2;
+    } else {
+        removalNum = 1;
+    }
+    for (int i = 0; i < removalNum; i++) { //Removes removalNum times
+        int randomNum = rand() % employees.size();
+        int count = 0;
+        for (auto value : employees) {
+            cout << value << endl;
+            if (randomNum == count) {
+                employees.erase(value);
+                break;
+            }
+            count++;
+        }
+    }
+}
+
+void addEmployees(list<string> &employees, vector<string> names) {
+    //Adding Employees
+    int num = rand() % 100 + 1;
+    int addNum = 0;
+    if (num <= 20) {
+        addNum = 3;
+    } else if (num <= 50) {
+        addNum = 2;
+    } else {
+        addNum = 1;
+    }
+
+    for (int i = 0; i < addNum; i++) { //Adds addNum times
+        int randName = rand() % names.size();
+        employees.push_back(names[randName]);
+    }
 }
