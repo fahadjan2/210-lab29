@@ -10,6 +10,7 @@ using namespace std;
 void display(map <string, vector<list<string>>>);
 void removeEmployees(list<string> &list);
 void addEmployees(list<string> &list, vector<string> names);
+void changeMenu(list<string> &list, vector<string> &menuItem);
 
 int main() {
     srand(time(0));
@@ -56,24 +57,24 @@ int main() {
         }
     };
     file2.close();
-
-
-    display(restaurants);
     
+    cout << "Initial Data" << endl;
+    display(restaurants);
+
     //25 month run
     for (int i = 0; i < 25; i++) {
         cout << "Month " << i + 1 << endl;
 
         removeEmployees(restaurants["Italiano"][1]);
         addEmployees(restaurants["Italiano"][1], names);
+        changeMenu(restaurants["Italiano"][0], menuItems);
+
+        cout << "\n------Restaurant details------" << endl;
         display(restaurants);
         
-        int num = rand() % 3;
-        for (int i = 0; i < num; i++) {
+        
 
-        }
-
-        num = rand() % 300 + 201;
+        int num = rand() % 300 + 201;
         for (int i = 0; i < num; i++) {
 
         }
@@ -98,8 +99,6 @@ int main() {
 
 //Display Function that will go through the restaurant's current data and display it neatly
 void display(map <string, vector<list<string>>> restaurantData) {
-    cout << endl;
-    cout << "------Restaurant details------" << endl;
     for (auto pair : restaurantData) { //Loops through every restaurant
         cout << "Restaurant name: " << pair.first << endl;
         for (int i = 0; i < pair.second.size(); i++) { //Loops through the data in each restaurant, ie list
@@ -172,5 +171,24 @@ void addEmployees(list<string> &employees, vector<string> names) {
         int randName = rand() % names.size();
         employees.push_back(names[randName]);
         cout << randName << " started the job." << endl;
+    }
+}
+
+//Function that changes menu items, taking in the list and a vector filled with new menu Items
+void changeMenu(list<string> &menu, vector<string> &menuItem) {
+    int num = rand() % 3; //Number of items that will change
+    for (int i = 0; i < num; i++) {
+        int randomNum = rand() % menu.size(); //Random position to replace
+        int randomItem = rand() % menuItem.size(); //Random menu item to take
+        string tempItem;
+
+        auto it = menu.begin();
+        advance(it, randomNum);
+        tempItem = *it;
+        it = menu.erase(it);
+        menu.insert(it, menuItem[randomItem]);
+
+        //Removes the menuItem from the vector and replaces it with the removed
+        menuItem[randomItem] = tempItem;
     }
 }
