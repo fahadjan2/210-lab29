@@ -11,6 +11,7 @@ void display(map <string, vector<list<string>>>);
 void removeEmployees(list<string> &list);
 void addEmployees(list<string> &list, vector<string> names);
 void changeMenu(list<string> &list, vector<string> &menuItem);
+void purchaseGenerator(list<string> &list);
 
 int main() {
     srand(time(0));
@@ -58,40 +59,22 @@ int main() {
     };
     file2.close();
     
+    //Initial Display
     cout << "Initial Data" << endl;
     display(restaurants);
 
     //25 month run
     for (int i = 0; i < 25; i++) {
         cout << "Month " << i + 1 << endl;
+        cout << endl;
 
-        removeEmployees(restaurants["Italiano"][1]);
+        //removeEmployees(restaurants["Italiano"][1]);
         addEmployees(restaurants["Italiano"][1], names);
-        changeMenu(restaurants["Italiano"][0], menuItems);
+        //changeMenu(restaurants["Italiano"][0], menuItems);
+        //purchaseGenerator(restaurants["Italiano"][2]);
 
         cout << "\n------Restaurant details------" << endl;
         display(restaurants);
-        
-        
-
-        int num = rand() % 300 + 201;
-        for (int i = 0; i < num; i++) {
-
-        }
-    
-        //Randomize a percentage of how many employees will leave, 1-100. 
-        //40% that one will leave, 30% that 2 will leave, 20% that 3 will leave, 10% that 4 will leave
-
-        //Randomize a percentage of how many employees will be hired, 1-100. If over a certain limit of employees, then add none or the max 
-        //50% that one will join, 30% that 2 will join, 20% that 3 will join
-
-        //Randomize a number from 0-3 to represent how many menu items will change.
-        //Change accordingly, and pick a menu item from another menu text file
-
-        //Randomize a number from 200-500 to represent how many purchases will be made
-        //The cost will then be randomly generated from 10-30 and added to the purchase list
-        
-        //Display call
     }
     
 
@@ -127,7 +110,7 @@ void display(map <string, vector<list<string>>> restaurantData) {
     cout << endl;
 }
 
-
+//Remove employees function, will take in the list for employees, then remove a certain amount
 void removeEmployees(list<string> &employees) {
     //Removing Employees
     int num = rand() % 100 + 1;
@@ -144,10 +127,10 @@ void removeEmployees(list<string> &employees) {
     for (int i = 0; i < removalNum; i++) { //Removes removalNum times
         int randomNum = rand() % employees.size();
         int count = 0;
-        for (auto it = employees.begin(); it != employees.end(); ++it) {
+        for (auto it = employees.begin(); it != employees.end(); ++it) { //Iterator through the list, removes a random employee
             if (count == randomNum) {
                 employees.erase(it);
-                cout << *it << "quit the job." << endl;
+                cout << *it << " quit the job." << endl;
                 break;
             }
             count++;
@@ -155,6 +138,7 @@ void removeEmployees(list<string> &employees) {
     }
 }
 
+//Add employee function, will go through the list of employees, and take in a vector of names, and add a certain amount of employees
 void addEmployees(list<string> &employees, vector<string> names) {
     //Adding Employees
     int num = rand() % 100 + 1;
@@ -168,9 +152,11 @@ void addEmployees(list<string> &employees, vector<string> names) {
     }
 
     for (int i = 0; i < addNum; i++) { //Adds addNum times
-        int randName = rand() % names.size();
-        employees.push_back(names[randName]);
-        cout << randName << " started the job." << endl;
+        if (employees.size() != 20) { //If doesn't exceed 20 employees
+            int randName = rand() % names.size();
+            employees.push_back(names[randName]);
+            cout << names[randName] << " started the job." << endl;
+        }
     }
 }
 
@@ -188,7 +174,18 @@ void changeMenu(list<string> &menu, vector<string> &menuItem) {
         it = menu.erase(it);
         menu.insert(it, menuItem[randomItem]);
 
+        cout << tempItem << " removed.";
+        cout << menuItem[randomItem] << " added.";
+
         //Removes the menuItem from the vector and replaces it with the removed
         menuItem[randomItem] = tempItem;
+    }
+}
+
+void purchaseGenerator(list<string> &purchases) {
+    int num = rand() % 300 + 201; //random number from 200-500, amount to add
+    for (int i = 0; i < num; i++) {
+        int randPurchase = rand() % 20 + 11; //10 - 30, random price
+        purchases.push_back(to_string(randPurchase)); 
     }
 }
