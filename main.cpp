@@ -184,7 +184,8 @@ void changeMenu(list<string> &menu, vector<string> &menuItem) {
 }
 
 void purchaseGenerator(list<string> &purchases) {
-    int num = rand() % 300 + 201; //random number from 200-500, amount to add
+    purchases.clear();
+    int num = rand() % 300 + 401; //random number from 400-700, amount to add
     for (int i = 0; i < num; i++) {
         int randPurchase = rand() % 20 + 11; //10 - 30, random price
         purchases.push_back(to_string(randPurchase)); 

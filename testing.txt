@@ -2,3 +2,12 @@ As the function is a display function, it will only have the parameter of the ma
 process every list inside it, and for each list inside, it will correctly display what is needed to be displayed. Ie for menu items, it will
 display the current menu items, for employees, will display every name working in the restaurant, and for purchases, will sum up all the purchases
 and output the sum. Finally, it will return after everything is displayed.
+
+For functions such as removeEmployees or addEmployees, the aim is to remove/add a random number of employees, then output the employee removed/added. This will be tested
+by calling the display function afterwards, and seeing if the employees were successfully removed or added.
+
+changeMenu function will do something similar, change a menu item in the list, and then output what was changed. Afterwards, a display
+will confirm whether it was removed/added
+
+purchaseGenerator takes in a list and randomly adds a few hundred values, and the display will then add up all the values. Testing will be in the outputting of each value added,
+however, the display can also test it through having different values each run.
