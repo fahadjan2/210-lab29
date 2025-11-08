@@ -1,0 +1,20 @@
+1. I found that I made the chances for removing employees higher than adding employees, so it would sometimes be the case where there
+are no employees left
+2. Initially, I found a few bugs regarding the populating of the file, because I made it so every time there was a blank line, it would
+move on to populating a different list with values. However, blank lines weren't processed, so I had to add a "///" in the file to make up for it
+3. Remove employees kept printing blank lines over and over, which was because I would try to reference the iterator after erasing it,
+but reordering it so I print the iterator reference before erasing it fixed it
+4. Before I could even add any values to the map, I had to resize it to actually initialize space for lists. Before resizing, no amount of
+push backs would add anything since it was empty.
+5. When I first ran the loop for display, I tried to iterate through the pair.second, which would go through the vector holding the lists,
+not the lists themselves, so I had to do pair.second[i] so it goes through the list itself. 
+6. When I tried to go through each value to remove employees with for (auto value : employees), it failed because
+it copied every value rather than iterating through the actual value, so I had to change it to for (auto it = employees.begin(); it != employees.end(); ++it)
+instead.
+7. I forgot to clear the purchases list before adding new ones, since I need it to be empty every month with new values. So I added purchases.clear(); on top
+8. I tried adding int values to the purchases list, which is a string list, so it failed. I added to_string to convert the int value to a string, and when 
+adding all the values to get the total, I change it back to int using stoi
+9. When I was outputting the added employee, I outputted its position in the list, rather than the name itself
+10. There was a case of using count in the display function to keep track of which list I am on, but since I was using it on top of
+the loop through all the restaurants (auto pair:restaurantdata), if I had two restaurants, it would use the same count for all the restaurants, 
+not reset each time. I used another loop instead of count to fix this
