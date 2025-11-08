@@ -32,20 +32,27 @@ int main() {
 
     file.close();
 
-    
+    display(restaurants);
     for (int i = 0; i < 25; i++) {
         cout << "Month " << i << endl;
         //Removing Employees
         int num = rand() % 100 + 1;
+        int removalNum = 0;
         if (num <= 10) {
-            
-            //4
+            removalNum = 4;
         } else if (num <= 30) {
-            //3
+            removalNum = 3;
         } else if (num <= 60) {
-            //2
+            removalNum = 2;
         } else {
-            //1
+            removalNum = 1;
+        }
+        for (int i = 0; i < removalNum; i++) { //Removes removalNum times
+            int randomNum = rand() % restaurants["Italiano"][1].size();
+            for (auto value : restaurants["Italiano"][1]) {
+                cout << value << endl;
+                if (randomNum == )
+            }
         }
         
         //Adding Employees
@@ -86,28 +93,23 @@ int main() {
 
 //Display Function that will go through the restaurant's current data and display it neatly
 void display(map <string, vector<list<string>>> restaurantData) {
-    int count = 0;
-    for (auto pair : restaurantData) {
+    for (auto pair : restaurantData) { //Loops through every restaurant
         cout << "Restaurant name: " << pair.first << endl;
-        for (int i = 0; i < pair.second.size(); i++) {
-            if (count == 0) {
+        for (int i = 0; i < pair.second.size(); i++) { //Loops through the data in each restaurant, ie list
+            if (i == 0) { //First list, Menu items
                 cout << "Menu Items: ";
-                for (auto listV : pair.second) {
-                    for (auto item : listV) {
-                        cout << item << " ";
-                    }
-                    cout << endl;
+                for (auto item : pair.second[i]) { //Loops through the list
+                    cout << item << " ";
                 }
-                count++;
-            } else if (count == 1) {
+                cout << endl;
+            } else if (i == 1) { //Second list, employees
                 cout << "Employees: ";
-                for (auto value : pair.second) {
+                for (auto value : pair.second[i]) { //Loops through list
                     cout << value << endl;
                 }
-                count++;
-            } else if (count == 2) {
+            } else if (i == 2) { //Third List, all the purchases
                 int sum = 0;
-                for (auto value : pair.second) {
+                for (auto value : pair.second[i]) { //Loops through list
                     sum += stoi(value);
                 }
                 cout << "Total purchases: " << sum << endl;
