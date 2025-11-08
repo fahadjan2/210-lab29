@@ -32,10 +32,13 @@ int main() {
 
     file.close();
 
+    
     for (int i = 0; i < 25; i++) {
         cout << "Month " << i << endl;
+        //Removing Employees
         int num = rand() % 100 + 1;
         if (num <= 10) {
+            
             //4
         } else if (num <= 30) {
             //3
@@ -45,6 +48,7 @@ int main() {
             //1
         }
         
+        //Adding Employees
         num = rand() % 100 + 1;
         if (num <= 20) {
             //3
@@ -85,27 +89,30 @@ void display(map <string, vector<list<string>>> restaurantData) {
     int count = 0;
     for (auto pair : restaurantData) {
         cout << "Restaurant name: " << pair.first << endl;
-        
-        if (count == 0) {
-            cout << "Menu Items: ";
-            for (auto value : pair.second) {
-                cout << value << endl;
+        for (int i = 0; i < pair.second.size(); i++) {
+            if (count == 0) {
+                cout << "Menu Items: ";
+                for (auto listV : pair.second) {
+                    for (auto item : listV) {
+                        cout << item << " ";
+                    }
+                    cout << endl;
+                }
+                count++;
+            } else if (count == 1) {
+                cout << "Employees: ";
+                for (auto value : pair.second) {
+                    cout << value << endl;
+                }
+                count++;
+            } else if (count == 2) {
+                int sum = 0;
+                for (auto value : pair.second) {
+                    sum += stoi(value);
+                }
+                cout << "Total purchases: " << sum << endl;
             }
-            count++;
-        } else if (count == 1) {
-            cout << "Employees: ";
-            for (auto value : pair.second) {
-                cout << value << endl;
-            }
-            count++;
-        } else if (count == 2) {
-            int sum = 0;
-            for (auto value : pair.second) {
-                sum += stoi(value);
-            }
-            cout << "Total purchases: " << sum << endl;
         }
-            
     }
     
     cout << endl;
