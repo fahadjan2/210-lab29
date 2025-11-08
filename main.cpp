@@ -8,33 +8,18 @@
 using namespace std;
 
 void display(map <string, vector<list<string>>>);
+void filePopulate(string fileName, list<string>);
 
 int main() {
     srand(time(0));
     map <string, vector<list<string>>> restaurants;
 
-    //File open
-	ifstream file;
-	file.open("data.txt");
-	if (!file.is_open()) {
-	    cout << "Failed to open file" << endl;
-	    return 1;
-	}
-
-    //Populating values
-    string value;
-    int current = 0;
-    while (file >> value) {
-        if (value == "")
-            current++;
-        restaurants["Italiano"][current].push_back(value);
-    };
-
-    file.close();
+    
 
     display(restaurants);
     for (int i = 0; i < 25; i++) {
         cout << "Month " << i << endl;
+
         //Removing Employees
         int num = rand() % 100 + 1;
         int removalNum = 0;
@@ -48,22 +33,36 @@ int main() {
             removalNum = 1;
         }
         for (int i = 0; i < removalNum; i++) { //Removes removalNum times
-            int randomNum = rand() % restaurants["Italiano"][1].size();
-            for (auto value : restaurants["Italiano"][1]) {
+            auto employees = restaurants["Italiano"][1];
+
+            int randomNum = rand() % employees.size();
+            int count = 0;
+            for (auto value : employees) {
                 cout << value << endl;
-                if (randomNum == )
+                if (randomNum == count) {
+                    employees.erase(value);
+                    break;
+                }
+                count++;
             }
         }
         
         //Adding Employees
         num = rand() % 100 + 1;
+        int addNum = 0;
         if (num <= 20) {
-            //3
+            addNum = 3;
         } else if (num <= 50) {
-            //2
+            addNum = 2;
         } else {
-            //1
+            addNum = 1;
         }
+
+        for (int i = 0; i < addNum; i++) { //Adds addNum times
+            auto employees = restaurants["Italiano"][1];
+            employees.push_back();
+        }
+        
 
         num = rand() % 3;
         for (int i = 0; i < num; i++) {
@@ -118,4 +117,8 @@ void display(map <string, vector<list<string>>> restaurantData) {
     }
     
     cout << endl;
+}
+
+void filePopulate() {
+    
 }
