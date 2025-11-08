@@ -1,3 +1,5 @@
+// COMSC-210 | Lab 29-31 | Fahad Fawad Ahmad 
+// IDE used: Visual Studio
 #include <iostream>
 #include <fstream>
 #include <list>
@@ -77,8 +79,6 @@ int main() {
         cout << "\n------Restaurant details------" << endl;
         display(restaurants);
     }
-    
-
 }
 
 //Display Function that will go through the restaurant's current data and display it neatly
@@ -144,9 +144,11 @@ void addEmployees(list<string> &employees, vector<string> names) {
     //Adding Employees
     int num = rand() % 100 + 1;
     int addNum = 0;
-    if (num <= 20) {
+    if (num <= 10) {
+        addNum = 4;
+    } else if (num <= 30) {
         addNum = 3;
-    } else if (num <= 50) {
+    } else if (num <= 60) {
         addNum = 2;
     } else {
         addNum = 1;
@@ -183,6 +185,7 @@ void changeMenu(list<string> &menu, vector<string> &menuItem) {
     }
 }
 
+//Function that generates random purchases made, a few hundred of them and adds them to the list
 void purchaseGenerator(list<string> &purchases) {
     purchases.clear();
     int num = rand() % 300 + 401; //random number from 400-700, amount to add
