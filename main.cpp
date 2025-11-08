@@ -8,13 +8,15 @@
 using namespace std;
 
 void display(map <string, vector<list<string>>>);
-//void removeEmployees(list<string> &list);
-//void addEmployees(list<string> &list, vector<string> names);
+void removeEmployees(list<string> &list);
+void addEmployees(list<string> &list, vector<string> names);
 
 int main() {
     srand(time(0));
     map <string, vector<list<string>>> restaurants;
-
+    restaurants["Italiano"].resize(3);
+    
+    //FILE OPENING AND POPULATING VALUES
     //File open
 	ifstream file;
 	file.open("data.txt");
@@ -25,10 +27,11 @@ int main() {
     //Populating values
     string value;
     int current = 0;
-    while (file >> value) {
+    while (getline(file, value)) {
         if (value == "///")
             current++;
-        restaurants["Italiano"][current].push_back(value);
+        else
+            restaurants["Italiano"][current].push_back(value);
     };
     file.close();
 
@@ -43,7 +46,7 @@ int main() {
 	}
     //Populating name and menu items values
     current = 0;
-    while (file2 >> value) {
+    while (getline(file2, value)) {
         if (value == "///")
             current++;
         else if (current == 0) {
@@ -54,11 +57,12 @@ int main() {
     };
     file2.close();
 
+
     display(restaurants);
-    /*
+    
     //25 month run
     for (int i = 0; i < 25; i++) {
-        cout << "Month " << i << endl;
+        cout << "Month " << i + 1 << endl;
 
         removeEmployees(restaurants["Italiano"][1]);
         addEmployees(restaurants["Italiano"][1], names);
@@ -88,26 +92,29 @@ int main() {
         
         //Display call
     }
-    */
+    
 
 }
 
 //Display Function that will go through the restaurant's current data and display it neatly
 void display(map <string, vector<list<string>>> restaurantData) {
+    cout << endl;
+    cout << "------Restaurant details------" << endl;
     for (auto pair : restaurantData) { //Loops through every restaurant
         cout << "Restaurant name: " << pair.first << endl;
         for (int i = 0; i < pair.second.size(); i++) { //Loops through the data in each restaurant, ie list
             if (i == 0) { //First list, Menu items
                 cout << "Menu Items: ";
                 for (auto item : pair.second[i]) { //Loops through the list
-                    cout << item << " ";
+                    cout << item << ", ";
                 }
                 cout << endl;
             } else if (i == 1) { //Second list, employees
                 cout << "Employees: ";
                 for (auto value : pair.second[i]) { //Loops through list
-                    cout << value << endl;
+                    cout << value << ", ";
                 }
+                cout << endl;
             } else if (i == 2) { //Third List, all the purchases
                 int sum = 0;
                 for (auto value : pair.second[i]) { //Loops through list
@@ -121,7 +128,7 @@ void display(map <string, vector<list<string>>> restaurantData) {
     cout << endl;
 }
 
-/*
+
 void removeEmployees(list<string> &employees) {
     //Removing Employees
     int num = rand() % 100 + 1;
@@ -141,6 +148,7 @@ void removeEmployees(list<string> &employees) {
         for (auto it = employees.begin(); it != employees.end(); ++it) {
             if (count == randomNum) {
                 employees.erase(it);
+                cout << *it << "quit the job." << endl;
                 break;
             }
             count++;
@@ -163,6 +171,6 @@ void addEmployees(list<string> &employees, vector<string> names) {
     for (int i = 0; i < addNum; i++) { //Adds addNum times
         int randName = rand() % names.size();
         employees.push_back(names[randName]);
+        cout << randName << " started the job." << endl;
     }
 }
-*/
