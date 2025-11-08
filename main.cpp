@@ -68,10 +68,11 @@ int main() {
         cout << "Month " << i + 1 << endl;
         cout << endl;
 
-        //removeEmployees(restaurants["Italiano"][1]);
+        removeEmployees(restaurants["Italiano"][1]);
         addEmployees(restaurants["Italiano"][1], names);
-        //changeMenu(restaurants["Italiano"][0], menuItems);
-        //purchaseGenerator(restaurants["Italiano"][2]);
+        changeMenu(restaurants["Italiano"][0], menuItems);
+        purchaseGenerator(restaurants["Italiano"][2]);
+        cout << endl;
 
         cout << "\n------Restaurant details------" << endl;
         display(restaurants);
@@ -102,7 +103,7 @@ void display(map <string, vector<list<string>>> restaurantData) {
                 for (auto value : pair.second[i]) { //Loops through list
                     sum += stoi(value);
                 }
-                cout << "Total purchases: " << sum << endl;
+                cout << "Total purchases: $" << sum << endl;
             }
         }
     }
@@ -129,8 +130,8 @@ void removeEmployees(list<string> &employees) {
         int count = 0;
         for (auto it = employees.begin(); it != employees.end(); ++it) { //Iterator through the list, removes a random employee
             if (count == randomNum) {
-                employees.erase(it);
                 cout << *it << " quit the job." << endl;
+                employees.erase(it);
                 break;
             }
             count++;
@@ -174,8 +175,8 @@ void changeMenu(list<string> &menu, vector<string> &menuItem) {
         it = menu.erase(it);
         menu.insert(it, menuItem[randomItem]);
 
-        cout << tempItem << " removed.";
-        cout << menuItem[randomItem] << " added.";
+        cout << tempItem << " removed." << endl;
+        cout << menuItem[randomItem] << " added." << endl;
 
         //Removes the menuItem from the vector and replaces it with the removed
         menuItem[randomItem] = tempItem;
