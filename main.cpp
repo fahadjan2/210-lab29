@@ -8,8 +8,8 @@
 using namespace std;
 
 void display(map <string, vector<list<string>>>);
-void removeEmployees(list<string> &list);
-void addEmployees(list<string> &list, vector<string> names);
+//void removeEmployees(list<string> &list);
+//void addEmployees(list<string> &list, vector<string> names);
 
 int main() {
     srand(time(0));
@@ -55,14 +55,15 @@ int main() {
     file2.close();
 
     display(restaurants);
-
+    /*
     //25 month run
     for (int i = 0; i < 25; i++) {
         cout << "Month " << i << endl;
 
         removeEmployees(restaurants["Italiano"][1]);
         addEmployees(restaurants["Italiano"][1], names);
-
+        display(restaurants);
+        
         int num = rand() % 3;
         for (int i = 0; i < num; i++) {
 
@@ -87,6 +88,8 @@ int main() {
         
         //Display call
     }
+    */
+
 }
 
 //Display Function that will go through the restaurant's current data and display it neatly
@@ -118,6 +121,7 @@ void display(map <string, vector<list<string>>> restaurantData) {
     cout << endl;
 }
 
+/*
 void removeEmployees(list<string> &employees) {
     //Removing Employees
     int num = rand() % 100 + 1;
@@ -134,10 +138,9 @@ void removeEmployees(list<string> &employees) {
     for (int i = 0; i < removalNum; i++) { //Removes removalNum times
         int randomNum = rand() % employees.size();
         int count = 0;
-        for (auto value : employees) {
-            cout << value << endl;
-            if (randomNum == count) {
-                employees.erase(value);
+        for (auto it = employees.begin(); it != employees.end(); ++it) {
+            if (count == randomNum) {
+                employees.erase(it);
                 break;
             }
             count++;
@@ -162,3 +165,4 @@ void addEmployees(list<string> &employees, vector<string> names) {
         employees.push_back(names[randName]);
     }
 }
+*/
